@@ -1,11 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <title>Almuznah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -46,19 +48,25 @@
 
             <ul class=" navbar-nav d-flex flex-column flex-lg-row align-items-left list-top  mb-2 mb-lg-0 ms-3">
                 <li class="nav-item"><a class="nav-link active " href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="shop.php">Shop</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Category</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
                 
             </ul>
 
-            <div class="d-flex flex-column flex-lg-row align-items-left  ">
+            <div class="d-flex flex-column flex-lg-row align-items-center sign-in">
                 <img class="collapse"  src="images/Group 25.svg" alt="Nav icons">
                 <span class="login-button">
-                    <a  href="menu.html" target="_blank"><img src="images/Frame 5.svg" alt="login"></a>
+                    <a  href="menu.php" target="_blank"><img src="images/Frame 5.svg" alt="login"></a>
                 </span>
+                 <span class="register-button py-4 px-4">
+                    <a  href="menu.php" target="_blank" class="text-decoration-none text-dark"> <i class="fa-regular fa-user"></i>Register</a>
+                </span>
+                
+
             </div>
+            
 
         </div>
 
