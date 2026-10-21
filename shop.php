@@ -32,42 +32,85 @@
     <div class="row">
         <div class="col-12 p-0">
 
-            <nav class="navbar navbar-expand-lg bg-dark">
-                <div class="container-fluid">
+            
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
 
-                    <a class="navbar-brand" href="#">Almuznah</a>
+        <a class="navbar-brand" href="http://localhost/Almuzna/">
+            Almuznah
+        </a>
 
-                    <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Category</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">About-us</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Place Order</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Track order</a></li>
-                        </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/Almuzna/">
+                        Home
+                    </a>
+                </li>
 
-                        <ul class="navbar-nav mx-auto me-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"><i class="fa-regular fa-heart"></i></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa-regular fa-user"></i></a></li>
-                        </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Category
+                    </a>
+                </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        About-us
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Track Order
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="whishlist.php">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/Almuzna/shopcart.php">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item user-menu">
+                    <a class="nav-link" href="#" aria-label="User menu">
+                        <i class="fa-regular fa-user"></i>
+                    </a>
+
+                    <div class="user-dropdown">
+                        <a href="sign-in.php">Sign-in</a>
+                        <a href="sign-up.php">Sign-up</a>
                     </div>
-                </div>
-            </nav>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
 
         </div>
     </div>
@@ -81,7 +124,7 @@
         </div>
 
         <div class="col-lg-3 border">
-            <form method="GET" action>
+            <form method="GET" action="productdetails.php">
                 <div class="d-flex flex-column">
 
                 <div class="d-flex justify-content-between align-items-center my-2">
@@ -177,6 +220,9 @@
                     </select>
                 </div>
                 <button class="btn btn-dark"> Apply this filter</button>
+                <button class="btn btn-danger w-50 mt-4 "> <a href="logout.php" class="text-white text-decoration-none">Log out</a></button>
+
+
 
 
                 </div>

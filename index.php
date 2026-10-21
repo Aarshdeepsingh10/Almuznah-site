@@ -58,10 +58,10 @@
             <div class="d-flex flex-column flex-lg-row align-items-center sign-in">
                 <img class="collapse"  src="images/Group 25.svg" alt="Nav icons">
                 <span class="login-button">
-                    <a  href="menu.php" target="_blank"><img src="images/Frame 5.svg" alt="login"></a>
+                    <a  href="sign-in.php" target="_blank"><img src="images/Frame 5.svg" alt="login"></a>
                 </span>
                  <span class="register-button py-4 px-4">
-                    <a  href="menu.php" target="_blank" class="text-decoration-none text-dark"> <i class="fa-regular fa-user"></i>Register</a>
+                    <a  href="sign-up.php" target="_blank" class="text-decoration-none text-dark"> <i class="fa-regular fa-user"></i>Register</a>
                 </span>
                 
 

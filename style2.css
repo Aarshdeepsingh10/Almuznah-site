@@ -176,3 +176,149 @@
     border-color: #6a1f2b;
     color: white;
 }
+
+.cart-sdd{
+    margin-top:180px;
+}
+.img-dvv4{
+    width:150px;
+    height:200px;
+    overflow:hidden;
+}
+.img-dvv4 img{
+    height:100%;
+    width:100%;
+    
+    
+}
+.rdd{
+    margin-top:70px;
+}
+.wrap-summary {
+    background-color: #FFEDF1;
+    padding: 50px 50px;
+    color: #000;
+    border-radius: 8px;
+}
+.wrap-summary .inner-summ {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Syne" !important;
+    font-weight: 500 !important;
+}
+.payment-chekout-2 {
+    background: #783546 !important;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 0;
+    font-family: 'Syne';
+}
+.payment-chekout {
+    background: transparent !important;
+    padding: 15px 25px;
+    border: 1px solid #000;
+    font-family: 'Syne';
+    font-size:13px;
+    text-decoration:none;
+}
+
+.cdd{
+    margin-top:30px;
+}
+
+.dot {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    
+    cursor: pointer;
+}
+
+.dot[data-color-id="1"] {
+    background-color: white;
+}
+
+.dot[data-color-id="2"] {
+    background-color: black;
+}
+
+.dot[data-color-id="3"] {
+    background-color: brown;
+}
+
+.dot[data-color-id="4"] {
+    background-color: lightblue;
+}
+
+.dot[data-color-id="5"] {
+    background-color: yellow;
+}
+
+.dot.selected {
+    outline: 2px solid #555;
+    outline-offset: 3px;
+}
+.wrap-summary{
+    background-color:lightblue;
+    padding:20px 50px;
+    box-sizing:border-box;
+}
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    
+    padding-bottom: 10px;
+}
+.image-wrapper{
+    height:50px;
+    width:50px;
+    border-radius:5px;
+    overflow:hidden;
+}
+.image-wrapper img{
+    height:100%;
+    width:100%;
+}
+.sddvv{
+    font-size:15px;
+}
+
+.user-menu {
+    position: relative;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    min-width: 150px;
+    display: none;
+    flex-direction: column;
+    padding: 8px 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.user-dropdown a {
+    display: block;
+    color:black;
+    background:black;
+    padding: 10px 15px;
+
+    text-decoration: none;
+}
+
+.user-dropdown a:hover {
+    background:red
+    
+}
+
+.user-menu:hover .user-dropdown {
+    display: flex;
+}

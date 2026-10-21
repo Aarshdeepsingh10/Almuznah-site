@@ -1,0 +1,38 @@
+
+.signin-card {
+    max-width: 600px;
+    width: 100%;
+    padding: 25px;
+    margin: 0 auto;
+}
+
+.signin-card .form-control {
+    margin-bottom: 15px;
+}
+
+body {
+    min-height: 100vh;
+}
+
+body > .container-fluid:last-of-type {
+    min-height: calc(100vh - 56px);
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body > .container-fluid:last-of-type > .row {
+    width: 100%;
+    margin: 0;
+}
+
+
+
+.my-btn{
+    width: 100%;
+    margin-top: 20px;
+    background: #9b2a2a;
+    background: linear-gradient(90deg, rgba(155, 42, 42, 1) 0%, rgba(237, 93, 83, 1) 100%);
+}
+
