@@ -7,6 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInit19dce85914a0d40ff610e42a7553729f
 {
     public static $files = array (
+        '0174385c3be07e86008907d06ee66531' => __DIR__ . '/..' . '/sabberworm/php-css-parser/src/Rule/Rule.php',
+        '98aea6e41b9cb79b379b10f37ba1f0b7' => __DIR__ . '/..' . '/sabberworm/php-css-parser/src/RuleSet/RuleContainer.php',
         '941748b3c8cae4466c827dfb5ca9602a' => __DIR__ . '/..' . '/rmccue/requests/library/Deprecated.php',
         '13906c19e3d8fcd1341b24ed4d51cf72' => __DIR__ . '/..' . '/razorpay/razorpay/Deprecated.php',
     );
@@ -16,10 +18,27 @@ class ComposerStaticInit19dce85914a0d40ff610e42a7553729f
         array (
             'WpOrg\\Requests\\' => 15,
         ),
+        'S' =>
+        array (
+            'Svg\\' => 4,
+            'Sabberworm\\CSS\\' => 15,
+        ),
         'R' =>
         array (
             'Razorpay\\Tests\\' => 15,
             'Razorpay\\Api\\' => 13,
+        ),
+        'M' =>
+        array (
+            'Masterminds\\' => 12,
+        ),
+        'F' =>
+        array (
+            'FontLib\\' => 8,
+        ),
+        'D' =>
+        array (
+            'Dompdf\\' => 7,
         ),
     );
 
@@ -27,6 +46,14 @@ class ComposerStaticInit19dce85914a0d40ff610e42a7553729f
         'WpOrg\\Requests\\' =>
         array (
             0 => __DIR__ . '/..' . '/rmccue/requests/src',
+        ),
+        'Svg\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/php-svg-lib/src/Svg',
+        ),
+        'Sabberworm\\CSS\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
         ),
         'Razorpay\\Tests\\' =>
         array (
@@ -36,10 +63,23 @@ class ComposerStaticInit19dce85914a0d40ff610e42a7553729f
         array (
             0 => __DIR__ . '/..' . '/razorpay/razorpay/src',
         ),
+        'Masterminds\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/masterminds/html5/src',
+        ),
+        'FontLib\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib',
+        ),
+        'Dompdf\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
+        ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'Requests' => __DIR__ . '/..' . '/rmccue/requests/library/Requests.php',
     );
 

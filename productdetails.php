@@ -228,14 +228,17 @@ $conn->close();
                     <i class="fa-solid fa-caret-up"></i>
                 </button>
             </div>
+            <?php
+                $imagePath = $product['cover'];
+
+                if (strpos($imagePath, 'images/') !== 0) {
+                    $imagePath = 'images/' . $imagePath;
+                }
+            ?>
 
             <div class="img-dvv2">
                 <img
-                    src="images/<?php echo htmlspecialchars(
-                        $product['cover'],
-                        ENT_QUOTES,
-                        'UTF-8'
-                    ); ?>"
+                    src="<?php echo htmlspecialchars($imagePath, ENT_QUOTES, 'UTF-8'); ?>"
                     alt="Product"
                 >
             </div>
@@ -248,13 +251,13 @@ $conn->close();
 
             <div class="img-dvv3">
                 <img
-                    src="images/<?php echo htmlspecialchars(
-                        $product['cover'],
+                    src="<?php echo htmlspecialchars(
+                        $imagePath,
                         ENT_QUOTES,
                         'UTF-8'
                     ); ?>"
                     alt="<?php echo htmlspecialchars(
-                        $product['name'],
+                        $imagePath,
                         ENT_QUOTES,
                         'UTF-8'
                     ); ?>"

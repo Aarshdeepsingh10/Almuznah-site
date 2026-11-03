@@ -104,6 +104,46 @@ try {
     ) {
         throw new Exception("Payment amount or currency does not match.");
     }
+    $stmt = $conn->prepare(
+    "SELECT sku_id, quantity
+     FROM tbl_order_items
+     WHERE order_id = ?
+     FOR UPDATE"
+);
+
+$stmt->bind_param("i", $order_id);
+$stmt->execute();
+
+$orderItems = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$stmt->close();
+
+if (empty($orderItems)) {
+    throw new Exception("No order items found.");
+}
+
+foreach ($orderItems as $item) {
+
+    $sku_id = (int) $item['sku_id'];
+    $quantity = (int) $item['quantity'];
+
+    $stmt = $conn->prepare(
+        "UPDATE product_skus
+         SET stock_quantity = stock_quantity - ?
+         WHERE sku_id = ?
+         AND stock_quantity >= ?"
+    );
+
+    $stmt->bind_param("iii", $quantity, $sku_id, $quantity);
+    $stmt->execute();
+
+    if ($stmt->affected_rows !== 1) {
+        $stmt->close();
+        throw new Exception("Insufficient stock for SKU: " . $sku_id);
+    }
+
+    $stmt->close();
+}
 
     $stmt = $conn->prepare(
         "UPDATE tbl_payments

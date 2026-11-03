@@ -11,7 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = "SELECT id, email, password FROM tbl_almuzah_register WHERE email = ? AND password = ?";
+        $sql = "SELECT id, email, password, role, username, status
+                FROM tbl_almuzah_register
+                WHERE email = ? AND password = ?";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $email, $password);
@@ -23,9 +25,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $user = $result->fetch_assoc();
 
+            if ($user['status'] === 'inactive') {
+                $stmt->close();
+                $conn->close();
+
+                header('Location: index.php');
+                exit();
+            }
+
             $_SESSION['email'] = $user['email'];
             $_SESSION['logged-in'] = true;
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['username'] = $user['username'];
 
             $stmt->close();
             $conn->close();

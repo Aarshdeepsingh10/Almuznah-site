@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET' || !isset($_GET['cart_id']) || !ctype_d
 }
 
 try{
-    require_once _DIR_ . 'config.php';
+    require_once __DIR__ . '/config.php';
 }catch(mysqli_sql_exception $e){
     error_log($e->get_message());
     http_status_code(500);

@@ -14,31 +14,40 @@ if (!$order_id || $order_id < 1) {
     exit;
 }
 
-$conn = new mysqli("localhost", "root", "", "user", 3307);
-$conn->set_charset("utf8mb4");
+try {
+    require_once __DIR__ . '/config.php';
 
-$sql = "
-    SELECT order_id, customer_name, grand_total, payment_method,
-           payment_status, order_status, created_at
-    FROM tbl_orders
-    WHERE order_id = ? AND user_id = ?
-";
+    $sql = "
+        SELECT order_id, customer_name, grand_total, payment_method,
+               payment_status, order_status, created_at
+        FROM tbl_orders
+        WHERE order_id = ? AND user_id = ?
+    ";
 
-$stmt = $conn->prepare($sql);
-$user_id = (int) $_SESSION['user_id'];
-$stmt->bind_param("ii", $order_id, $user_id);
-$stmt->execute();
+    $stmt = $conn->prepare($sql);
 
-$order = $stmt->get_result()->fetch_assoc();
+    $user_id = (int) $_SESSION['user_id'];
 
-$stmt->close();
-$conn->close();
+    $stmt->bind_param("ii", $order_id, $user_id);
+    $stmt->execute();
 
-if (!$order) {
-    http_response_code(404);
-    exit("Order not found.");
+    $order = $stmt->get_result()->fetch_assoc();
+
+    $stmt->close();
+    $conn->close();
+
+    if (!$order) {
+        http_response_code(404);
+        exit("Order not found.");
+    }
+
+} catch (Throwable $e) {
+    error_log($e->getMessage());
+    http_response_code(500);
+    exit("Something went wrong. Please try again later.");
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,9 +113,16 @@ if (!$order) {
             <?php echo htmlspecialchars($order['created_at'], ENT_QUOTES, 'UTF-8'); ?>
         </p>
 
-        <div class="text-center mt-3">
+        <div class="text-center d-flex justify-content-center gap-2 mt-3">
             <a href="shop.php" class="btn btn-dark">Continue Shopping</a>
+            <?php if ($order['payment_method'] === 'cod'): ?>
+            <a href="download_invoice.php?order_id=<?php echo (int) $order['order_id']; ?>"
+                class="btn btn-danger">
+                Download Invoice
+            </a>
+        <?php endif; ?>
         </div>
+        
     </div>
 </div>
 

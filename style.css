@@ -516,7 +516,7 @@
 
     .overlay-text  { top: 8%; }
     .overlay-text p { font-size: 25px; line-height: 36px; margin: 0; }
-    .overlay-text2 { top: 34%; }
+    .overlay-text2 { top: 34%;}
     .overlay-text2 p { font-size: 14px; line-height: 20px; margin: 0; }
     .overlay-text2 br { display: none; }
     .overlay-text3 { top: 64%; }

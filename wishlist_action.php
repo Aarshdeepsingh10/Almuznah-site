@@ -17,11 +17,11 @@ if (!ctype_digit((string) $product_id) || (int) $product_id < 1) {
 $user_id = (int) $_SESSION['user_id'];
 $product_id = (int) $product_id;
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 
 try {
-    $conn = new mysqli("localhost", "root", "", "user", 3307);
-    $conn->set_charset("utf8mb4");
+    require_once __DIR__ . '/config.php';
+    
 
     $stmt = $conn->prepare("
         INSERT INTO tbl_wishlist (user_id, product_id)

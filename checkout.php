@@ -2,45 +2,82 @@
 <?php
 session_start();
 
-if (empty($_SESSION['logged-in']) || empty($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
-// $isLoggedIn=!empty($_SESSION['logged_in']) &&  
-// !empty($_SESSION['user_id']);
-
-
-
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+$isLoggedIn = !empty($_SESSION['logged-in']) && !empty($_SESSION['user_id']);
 
 $conn = new mysqli("localhost", "root", "", "user", 3307);
 $conn->set_charset("utf8mb4");
 
-$user_id = (int) $_SESSION['user_id'];
+$cart_items = [];
 
-$sql = "
-    SELECT
-        ci.quantity,
-        c.color_name,
-        s.size_name,
-        p.name,
-        p.cover,
-        p.value
-    FROM cart_items ci
-    JOIN product_skus ps ON ci.sku_id = ps.sku_id
-    JOIN tbl_product p ON ps.product_id = p.id
-    JOIN tbl_color c ON ps.color_id = c.color_id
-    JOIN tbl_size s ON ps.size_id = s.size_id
-    WHERE ci.user_id = ?
-";
+if ($isLoggedIn) {
+    $user_id = (int) $_SESSION['user_id'];
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
+    $sql = "
+        SELECT
+            ci.quantity,
+            c.color_name,
+            s.size_name,
+            p.name,
+            p.cover,
+            p.value
+        FROM cart_items ci
+        JOIN product_skus ps ON ci.sku_id = ps.sku_id
+        JOIN tbl_product p ON ps.product_id = p.id
+        JOIN tbl_color c ON ps.color_id = c.color_id
+        JOIN tbl_size s ON ps.size_id = s.size_id
+        WHERE ci.user_id = ?
+    ";
 
-$cart_items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
 
-$stmt->close();
+    $cart_items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    $stmt->close();
+} else {
+    if (empty($_SESSION['guest_cart'])) {
+        $conn->close();
+        header("Location: shopcart.php");
+        exit;
+    }
+
+    foreach ($_SESSION['guest_cart'] as $cartKey => $guestItem) {
+        $sku_id = (int) $guestItem['sku_id'];
+        $product_id = (int) $guestItem['product_id'];
+        $quantity = (int) $guestItem['quantity'];
+
+        $sql = "
+            SELECT
+                c.color_name,
+                s.size_name,
+                p.name,
+                p.cover,
+                p.value
+            FROM product_skus ps
+            JOIN tbl_product p ON ps.product_id = p.id
+            JOIN tbl_color c ON ps.color_id = c.color_id
+            JOIN tbl_size s ON ps.size_id = s.size_id
+            WHERE ps.sku_id = ? AND ps.product_id = ?
+        ";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $sku_id, $product_id);
+        $stmt->execute();
+
+        $item = $stmt->get_result()->fetch_assoc();
+
+        $stmt->close();
+
+        if ($item) {
+            $item['quantity'] = $quantity;
+            $cart_items[] = $item;
+        }
+    }
+}
+
 $conn->close();
 
 if (empty($cart_items)) {
@@ -54,6 +91,7 @@ foreach ($cart_items as $item) {
     $subtotal += (float) $item['value'] * (int) $item['quantity'];
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
