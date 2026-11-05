@@ -23,12 +23,13 @@ try{
         http_response_code(404);
         exit();
     }
+    
     $stmt->close();
     
-    if($orderdetails['payment_method']!=='cod'){
-        header('location: index.php');
-        exit();
-    }
+    
+   
+   
+   
     $sql='SELECT p.name,c.color_name,s.size_name, oi.sku_id, oi.quantity, oi.price
     FROM tbl_order_items oi
     JOIN product_skus sk ON oi.sku_id=sk.sku_id
@@ -178,14 +179,6 @@ $dompdf->stream('invoice.pdf', ['Attachment' => false]);
 
 exit();
     
-    
-    
-
-
-
-
-
-
 }catch(throwable $e){
     error_log($e->getMessage());
     http_response_code(500);

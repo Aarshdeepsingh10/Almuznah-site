@@ -370,12 +370,16 @@ foreach ($orders as $order) {
                                             </td>
 
                                             <td>
-                                                <a
-                                                    class="btn btn-sm btn-outline-primary"
-                                                    href="order-details.php?id=<?= (int) $order['order_id'] ?>"
+                                               
+
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm btn-outline-success"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#statusModal<?= (int) $order['order_id'] ?>"
                                                 >
-                                                    View
-                                                </a>
+                                                    Update Payment
+                                                </button>
                                             </td>
                                         </tr>
 
@@ -389,6 +393,177 @@ foreach ($orders as $order) {
                         </div>
                     </div>
                 </div>
+
+                <!-- Payment status modals -->
+                <?php foreach ($orders as $order): ?>
+
+                    <?php
+                    $orderId = (int) $order['order_id'];
+                    $paymentStatus = strtolower($order['payment_status']);
+                    $orderStatus = strtolower($order['order_status']);
+                    ?>
+
+                    <div
+                        class="modal fade"
+                        id="statusModal<?= $orderId ?>"
+                        tabindex="-1"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog modal-dialog-centered">
+
+                            <div class="modal-content">
+
+                                <form action="update-payment.php" method="POST">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            Update Payment Status
+                                        </h5>
+
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <input
+                                            type="hidden"
+                                            name="order_id"
+                                            value="<?= $orderId ?>"
+                                        >
+
+                                        <p>
+                                            Order ID:
+                                            <strong>#<?= $orderId ?></strong>
+                                        </p>
+
+                                        <p>
+                                            Customer:
+                                            <strong>
+                                                <?= escape($order['customer_name']) ?>
+                                            </strong>
+                                        </p>
+
+                                        <p>
+                                            Payment Method:
+                                            <strong>
+                                                <?= escape($order['payment_method']) ?>
+                                            </strong>
+                                        </p>
+
+                                        <p>
+                                            Amount:
+                                            <strong>
+                                                AED <?= number_format((float) $order['grand_total'], 2) ?>
+                                            </strong>
+                                        </p>
+
+                                        <label
+                                            for="paymentStatus<?= $orderId ?>"
+                                            class="form-label"
+                                        >
+                                            Payment Status
+                                        </label>
+
+                                        <select
+                                            name="payment_status"
+                                            id="paymentStatus<?= $orderId ?>"
+                                            class="form-select"
+                                            required
+                                        >
+                                            <option
+                                                name="payment_status"
+                                                value="pending"
+                                                <?= $paymentStatus === 'pending' ? 'selected' : '' ?>
+                                            >
+                                                Pending
+                                            </option>
+
+                                            <option
+                                                name="payment_status"
+                                                value="paid"
+                                                <?= $paymentStatus === 'paid' ? 'selected' : '' ?>
+                                            >
+                                                Paid
+                                            </option>
+
+                                            <option
+                                                name="payment_status"
+                                                value="failed"
+                                                <?= $paymentStatus === 'failed' ? 'selected' : '' ?>
+                                            >
+                                                Failed
+                                            </option>
+                                        </select>
+                                        <label
+                                            for="orderStatus<?= $orderId ?>"
+                                            class="form-label"
+                                        >
+                                            Order Status
+                                        </label>
+                                        <select
+                                            name="order_status"
+                                            id="orderStatus<?= $orderId ?>"
+                                            class="form-select"
+                                            required
+                                        >
+                                            <option
+                                                name="order_status"
+                                                value="pending"
+                                                <?= $orderStatus === 'pending' ? 'selected' : '' ?>
+                                            >
+                                                Pending
+                                            </option>
+
+                                            <option
+                                                name="order_status"
+                                                value="paid"
+                                                <?= $orderStatus === 'paid' ? 'selected' : '' ?>
+                                            >
+                                                Paid
+                                            </option>
+
+                                            <option
+                                                name="order_status"
+                                                value="failed"
+                                                <?= $orderStatus === 'failed' ? 'selected' : '' ?>
+                                            >
+                                                Failed
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Cancel
+                                        </button>
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-primary"
+                                        >
+                                            Save Changes
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                <?php endforeach; ?>
 
             <?php endif; ?>
 

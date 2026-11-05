@@ -180,6 +180,11 @@ while ($row = $recentResult->fetch_assoc()) {
                 <i class="bi bi-people me-2"></i>
                 Customers
             </a>
+            <a href="low-stock.php">
+                <i class="bi bi-tag-fill me-2"></i>
+                low-stock
+
+            </a>
 
             <hr class="border-secondary">
 

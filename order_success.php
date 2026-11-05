@@ -115,7 +115,7 @@ try {
 
         <div class="text-center d-flex justify-content-center gap-2 mt-3">
             <a href="shop.php" class="btn btn-dark">Continue Shopping</a>
-            <?php if ($order['payment_method'] === 'cod'): ?>
+            <?php if ($order['payment_method'] === 'cod' || $order['payment_method']==='razorpay'): ?>
             <a href="download_invoice.php?order_id=<?php echo (int) $order['order_id']; ?>"
                 class="btn btn-danger">
                 Download Invoice
